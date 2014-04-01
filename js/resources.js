@@ -6,6 +6,8 @@ game.resources = [
 	 */
     {name: "bg", type:"image", src: "data/img/bg.png"},
     {name: "grass", type:"image", src: "data/img/grassgrow.png"},
+    {name: "piggies", type:"image", src: "data/img/piggies.png"},
+    {name: "poop", type:"image", src: "data/img/poop.png"},
 
 	/* Atlases 
 	 * @example
@@ -22,6 +24,7 @@ game.resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/", channel : 1},
 	 */	
+    {name: "bgmusic", type: "audio", src: "data/bgm/", channel : 1},
 
 	/* Sound effects. 
 	 * @example
