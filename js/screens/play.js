@@ -9,11 +9,13 @@ game.PlayScreen = me.ScreenObject.extend({
         me.audio.play("bgmusic", true);
 
 		this.bg = new game.BG();
-        me.game.add(this.bg, -1000);
+        me.game.world.addChild(this.bg);
 		this.HUD = new game.HUD.Container();
-		me.game.add(this.HUD, 100000);
-        me.game.add(new game.Grass(100, 100), -10);
-        me.game.add(new game.Piggy(100, 40), 0);
+		me.game.world.addChild(this.HUD);
+        me.game.world.addChild(new game.Grass(100, 100));
+        me.game.world.addChild(new game.Piggy(100, 40));
+        me.game.world.addChild(new game.GrassButton(228, 32));
+        me.game.world.addChild(new game.PigButton(228, 64));
 	},
 
 
@@ -22,7 +24,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onDestroyEvent: function() {
 		// remove the HUD from the game world
-		me.game.removeAll();
+		me.game.world.removeAll();
         me.audio.stop("bgmusic");
 	}
 });

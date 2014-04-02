@@ -12,9 +12,10 @@ game.HUD.Container = me.ObjectContainer.extend({
 	init: function() {
 		// call the constructor
 		this.parent();
+
+        this.z = 10000;
 		
-		// persistent across level change
-		this.isPersistent = true;
+		this.alwaysUpdate = true;
 		
 		// non collidable
 		this.collidable = false;
@@ -26,49 +27,32 @@ game.HUD.Container = me.ObjectContainer.extend({
 		this.name = "HUD";
 		
 		// add our child score object at the top left corner
-		this.addChild(new game.HUD.ScoreItem(5, 5));
-	}
+		this.addChild(new game.HUD.PoopIcon(224, 8));
+        this.text = new game.FancyText.String(232, 8, 3);
+        this.text.setString("0");
+        this.text.z = 10000;
+        this.addChild(this.text);
+	},
+
+    update: function() {
+        this.parent();
+        this.text.setString(game.data.money.toString());
+        return true;
+    },
 });
 
 
-/** 
- * a basic HUD item to display score
+/**
+ * Poop icon for  the score screen.
  */
-game.HUD.ScoreItem = me.Renderable.extend({	
-	/** 
-	 * constructor
-	 */
-	init: function(x, y) {
-		
-		// call the parent constructor 
-		// (size does not matter here)
-		this.parent(new me.Vector2d(x, y), 10, 10); 
-		
-		// local copy of the global score
-		this.score = -1;
+game.HUD.PoopIcon = me.AnimationSheet.extend({
+    init: function(x, y) {
+        this.z = 10000;
+        this.parent(x, y, me.loader.getImage("poop"), 8, 8);
 
-		// make sure we use screen coordinates
-		this.floating = true;
-	},
+        this.floating = true;
 
-	/**
-	 * update function
-	 */
-	update : function () {
-		// we don't do anything fancy here, so just
-		// return true if the score has been updated
-		if (this.score !== game.data.score) {	
-			this.score = game.data.score;
-			return true;
-		}
-		return false;
-	},
-
-	/**
-	 * draw the score
-	 */
-	draw : function (context) {
-		// draw it baby !
-	}
-
+        this.addAnimation("0", [0]);
+        this.setCurrentAnimation("0");
+    },
 });

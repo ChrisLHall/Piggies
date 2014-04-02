@@ -3,6 +3,9 @@
  */
 game.Grass = me.ObjectEntity.extend({
     init: function(x, y) {
+        this.z = -10;
+        this.isGrass = true;
+
         var settings = {};
         settings.image = me.loader.getImage("grass");
         settings.spritewidth = 16;
@@ -28,7 +31,7 @@ game.Grass = me.ObjectEntity.extend({
     update: function() {
         if (this.growState < 2) {
             this.growTimer++;
-            if (this.growTimer > 360 + 180 * this.growState) {
+            if (this.growTimer > 240 + 120 * this.growState) {
                 this.growTimer = 0;
                 this.growState++;
                 this.renderable.setCurrentAnimation(this.growState.toString());

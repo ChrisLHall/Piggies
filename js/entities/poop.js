@@ -3,6 +3,7 @@
  */
 game.Poop = me.ObjectEntity.extend({
     init: function(x, y) {
+        this.z = -5;
         var settings = {};
         settings.image = me.loader.getImage("poop");
         settings.spritewidth = 8;
@@ -18,12 +19,17 @@ game.Poop = me.ObjectEntity.extend({
         this.renderable.addAnimation("0", [0]);
         this.renderable.setCurrentAnimation("0");
 
+        this.removed = false;
+
         me.input.registerPointerEvent("mousedown", this.collisionBox,
             this.clicked.bind(this));
     },
 
     clicked: function() {
-        game.data.money++;
-        me.game.remove(this);
+        if (!this.removed) {
+            this.removed = true;
+            game.data.money++;
+            me.game.world.removeChild(this);
+        }
     },
 });

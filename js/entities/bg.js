@@ -7,7 +7,7 @@ game.BG = me.AnimationSheet.extend({
 	 * constructor
 	 */
 	init: function(x, y) {
-		
+		this.z = -1000;
 		// call the parent constructor 
 		// (size does not matter here)
 		this.parent(x, y, me.loader.getImage("bg"), 256, 144);

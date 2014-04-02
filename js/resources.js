@@ -7,7 +7,10 @@ game.resources = [
     {name: "bg", type:"image", src: "data/img/bg.png"},
     {name: "grass", type:"image", src: "data/img/grassgrow.png"},
     {name: "piggies", type:"image", src: "data/img/piggies.png"},
+    {name: "skeleton", type:"image", src: "data/img/skeleton.png"},
     {name: "poop", type:"image", src: "data/img/poop.png"},
+    {name: "buttons", type:"image", src: "data/img/buttons.png"},
+    {name: "yellowfont", type:"image", src: "data/img/yellowfont.png"},
 
 	/* Atlases 
 	 * @example
