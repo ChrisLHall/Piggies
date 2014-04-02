@@ -29,6 +29,7 @@ game.Poop = me.ObjectEntity.extend({
         if (!this.removed) {
             this.removed = true;
             game.data.money++;
+            me.audio.play("getpoop");
             me.game.world.removeChild(this);
         }
     },

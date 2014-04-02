@@ -76,6 +76,7 @@ game.Piggy = me.ObjectEntity.extend({
             this.poopTimer = -1;
             this.poopLeft--;
             me.game.world.addChild(new game.Poop(this.pos.x + 4, this.pos.y + 8));
+            me.audio.play("fart" + Math.floor(Math.random() * 3).toString());
             if (this.poopLeft > 0) {
                 this.poopTimer = 120 + Math.floor(Math.random() * 60);
             }
@@ -129,6 +130,7 @@ game.Piggy = me.ObjectEntity.extend({
                     me.game.world.removeChild(m);
                     me.game.world.addChild(new game.Skeleton(m.pos.x,
                         m.pos.y));
+                    me.audio.play("squeal");
                 }
             }
         }
@@ -197,6 +199,9 @@ game.Piggy = me.ObjectEntity.extend({
         this.eatsToGrow--;
         if (this.eatsToGrow == 0 && this.growState < 4) {
             this.growState++;
+            if (this.growState == 4) {
+                me.audio.play("demon");
+            }
             this.changeFrame();
             this.eatsToGrow = 2 + this.growState * 2;
         }

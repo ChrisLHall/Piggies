@@ -34,8 +34,6 @@ game.GrassButton = me.ObjectEntity.extend({
     },
 
     clicked: function() {
-        //TODO REMOVE
-        game.data.money += 5;
         if (game.data.money >= 1) {
             game.data.money -= 1;
             var xCoord = game.data.XMIN + Math.floor(Math.random()
@@ -90,6 +88,7 @@ game.PigButton = me.ObjectEntity.extend({
             var yCoord = game.data.YMIN + Math.floor(Math.random()
                 * (game.data.YMAX - game.data.YMIN));
             me.game.world.addChild(new game.Piggy(xCoord, yCoord));
+            me.audio.play("oink");
         }
     },
 });
