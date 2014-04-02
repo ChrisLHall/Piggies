@@ -31,6 +31,13 @@ game.resources = [
 
 	/* Sound effects. 
 	 * @example
-	 * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2}
+	 * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2},
 	 */
+    {name: "demon", type: "audio", src: "data/sfx/", channel : 2},
+    {name: "fart0", type: "audio", src: "data/sfx/", channel : 2},
+    {name: "fart1", type: "audio", src: "data/sfx/", channel : 2},
+    {name: "fart2", type: "audio", src: "data/sfx/", channel : 2},
+    {name: "getpoop", type: "audio", src: "data/sfx/", channel : 2},
+    {name: "oink", type: "audio", src: "data/sfx/", channel : 2},
+    {name: "squeal", type: "audio", src: "data/sfx/", channel : 2},
 ];

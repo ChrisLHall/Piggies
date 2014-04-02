@@ -6,8 +6,8 @@ var game = {
 	data : {
         XMIN: 16,
         YMIN: 16,
-        XMAX: 208,
-        YMAX: 128,
+        XMAX: 192,
+        YMAX: 112,
 		// score
 		money : 0,
 	},

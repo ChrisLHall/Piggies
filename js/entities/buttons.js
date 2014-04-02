@@ -34,12 +34,14 @@ game.GrassButton = me.ObjectEntity.extend({
     },
 
     clicked: function() {
+        //TODO REMOVE
+        game.data.money += 5;
         if (game.data.money >= 1) {
             game.data.money -= 1;
-            var xCoord = game.data.XMIN + 10 + Math.floor(Math.random()
-                * (game.data.XMAX - game.data.XMIN - 20));
-            var yCoord = game.data.YMIN + 10 + Math.floor(Math.random()
-                * (game.data.YMAX - game.data.YMIN - 20));
+            var xCoord = game.data.XMIN + Math.floor(Math.random()
+                * (game.data.XMAX - game.data.XMIN));
+            var yCoord = game.data.YMIN + Math.floor(Math.random()
+                * (game.data.YMAX - game.data.YMIN));
             me.game.world.addChild(new game.Grass(xCoord, yCoord));
         }
     },
@@ -83,10 +85,10 @@ game.PigButton = me.ObjectEntity.extend({
     clicked: function() {
         if (game.data.money >= 5) {
             game.data.money -= 5;
-            var xCoord = game.data.XMIN + 10 + Math.floor(Math.random()
-                * (game.data.XMAX - game.data.XMIN - 20));
-            var yCoord = game.data.YMIN + 10 + Math.floor(Math.random()
-                * (game.data.YMAX - game.data.YMIN - 20));
+            var xCoord = game.data.XMIN + Math.floor(Math.random()
+                * (game.data.XMAX - game.data.XMIN));
+            var yCoord = game.data.YMIN + Math.floor(Math.random()
+                * (game.data.YMAX - game.data.YMIN));
             me.game.world.addChild(new game.Piggy(xCoord, yCoord));
         }
     },

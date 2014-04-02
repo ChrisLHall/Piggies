@@ -55,6 +55,8 @@ game.Piggy = me.ObjectEntity.extend({
 //had to run! see you in cory at 5! so little work accomplished...-weina
 
     update: function() {
+        if (this.removed) return false;
+
         if (this.airTimer > 0) {
             this.airTimer--;
             var deltaY = (this.airTimer * (this.airTimer - 20)) * 0.02;
@@ -110,18 +112,27 @@ game.Piggy = me.ObjectEntity.extend({
             return true;
         }
 
-        // Collide the grass
+        // Collide the grass, or pigs if in eating mode
         for (var i = 0; i < me.game.world.children.length; i++) {
             var m = me.game.world.getChildAt(i);
+            if (m == this) continue;
             if (m.isGrass && m.growState == 2) {
-                if (this.collisionBox.overlaps(m.collisionBox)) {
+                if (this.collisionBox && m.collisionBox
+                        && this.collisionBox.overlaps(m.collisionBox)) {
                     me.game.world.removeChild(m);
                     this.eatGrass();
+                }
+            } else if (m.isPig && !m.removed && this.growState == 4) {
+                if (this.collisionBox && m.collisionBox
+                        && this.collisionBox.overlaps(m.collisionBox)) {
+                    m.removed = true;
+                    me.game.world.removeChild(m);
+                    me.game.world.addChild(new game.Skeleton(m.pos.x,
+                        m.pos.y));
                 }
             }
         }
 
-        //this.collisionBox.pos = this.pos;
         return true;
     },
 
@@ -138,6 +149,7 @@ game.Piggy = me.ObjectEntity.extend({
         var closestDist = -1;
         for (var i = 0; i < me.game.world.children.length; i++) {
             var m = me.game.world.getChildAt(i);
+            if (m == this) continue;
             if (m.isGrass && m.growState == 2) {
                 if (!foundTarget || Math.abs(m.pos.x - this.pos.x)
                     + Math.abs(m.pos.y - this.pos.y) < closestDist) {
@@ -161,6 +173,7 @@ game.Piggy = me.ObjectEntity.extend({
         var closestDist = -1;
         for (var i = 0; i < me.game.world.children.length; i++) {
             var m = me.game.world.getChildAt(i);
+            if (m == this) continue;
             if (m.isPig && m.growState != 4) {
                 if (!foundTarget || Math.abs(m.pos.x - this.pos.x)
                     + Math.abs(m.pos.y - this.pos.y) < closestDist) {
